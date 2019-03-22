@@ -28,6 +28,27 @@ public class DashboardContent implements DashboardContentProvider {
     @EJB
     private CategoryBean categoryBean;
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @EJB
     private TaskBean taskBean;
 

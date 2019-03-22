@@ -120,3 +120,5 @@ Das Beispiel geht dabei von der Derby-Beispieldatenbank aus, die Bestandteil
 von Netbeans ist. Für den Produktivbetrieb muss die Datenbankverbindung
 natürlich auf einen echten Datenbankserver (MariaDB, PostgreSQL, ...) gelenkt
 werden.
+
+Calvin war hier.
