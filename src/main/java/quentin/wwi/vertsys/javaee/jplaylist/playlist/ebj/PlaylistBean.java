@@ -7,36 +7,32 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package quentin.wwi.vertsys.javaee.jplaylist.songs.ejb;
+package quentin.wwi.vertsys.javaee.jplaylist.playlist.ebj;
 
 import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.EntityBean;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
-import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 
 /**
  *
  * @author D070366
  */
-
 @Stateless
 @RolesAllowed("app-user")
-public class SongBean extends EntityBean<Song, Long>{
+public class PlaylistBean extends EntityBean<Playlist, Long>{
 
-    public SongBean() {
-        super(Song.class);
-    }
-   
-    
-    
-    public List<Song> getSongsOfPlaylist(Playlist playlist){
-      //  return em.createQuery("SELECT s FROM Song s where s.id = :id").setParameter("id", playlistId).getResultList();
-      return em.createQuery("SELECT s FROM Song s WHERE s.playlist = :playlist")
-              .setParameter("playlist", playlist)
-              .getResultList();
+    public PlaylistBean() {
+        super(Playlist.class);
     }
     
+    public PlaylistBean(Class<Playlist> entityClass) {
+        super(entityClass);
+    }
+    
+    public List<Playlist> findAllSortedByName(){
+        return em.createQuery("SELECT p FROM Playlist p ORDER BY p.playlistName").getResultList();
+    }
     
 }

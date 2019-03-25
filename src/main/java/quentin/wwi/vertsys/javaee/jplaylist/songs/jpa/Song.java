@@ -85,7 +85,17 @@ public class Song implements Serializable{
         this.artist = artist;
     }
     
+    
+    
     //</editor-fold>
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     
     
     

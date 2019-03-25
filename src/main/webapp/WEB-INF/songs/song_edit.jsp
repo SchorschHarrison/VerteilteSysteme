@@ -48,66 +48,15 @@
                 <%-- Eingabefelder --%>
                 <label for="song_title">title:</label>
                 <div class="side-by-side">
-                    <input type="text" name="song_title" value="${task_form.values["song_title"][0]}">
+                    <input type="text" name="song_title" value="${song_form.values["song_title"][0]}">
                 </div>
                 
                 <label for="song_artist">artist:</label>
                 <div class="side-by-side">
-                    <input type="text" name="song_artist" value="${task_form.values["song_artist"][0]}">
+                    <input type="text" name="song_artist" value="${song_form.values["song_artist"][0]}">
                 </div>
                 
-
-                <label for="task_category">Kategorie:</label>
-                <div class="side-by-side">
-                    <select name="task_category">
-                        <option value="">Keine Kategorie</option>
-
-                        <c:forEach items="${categories}" var="category">
-                            <option value="${category.id}" ${task_form.values["task_category"][0] == category.id.toString() ? 'selected' : ''}>
-                                <c:out value="${category.name}" />
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <label for="task_due_date">
-                    Fällig am:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side">
-                    <input type="text" name="task_due_date" value="${task_form.values["task_due_date"][0]}">
-                    <input type="text" name="task_due_time" value="${task_form.values["task_due_time"][0]}">
-                </div>
-
-                <label for="task_status">
-                    Status:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side margin">
-                    <select name="task_status">
-                        <c:forEach items="${statuses}" var="status">
-                            <option value="${status}" ${task_form.values["task_status"][0] == status ? 'selected' : ''}>
-                                <c:out value="${status.label}"/>
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <label for="task_short_text">
-                    Bezeichnung:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side">
-                    <input type="text" name="task_short_text" value="${task_form.values["task_short_text"][0]}">
-                </div>
-
-                <label for="task_long_text">
-                    Beschreibung:
-                </label>
-                <div class="side-by-side">
-                    <textarea name="task_long_text"><c:out value="${task_form.values['task_long_text'][0]}"/></textarea>
-                </div>
-
+                
                 <%-- Button zum Abschicken --%>
                 <div class="side-by-side">
                     <button class="icon-pencil" type="submit" name="action" value="save">
@@ -123,9 +72,9 @@
             </div>
 
             <%-- Fehlermeldungen --%>
-            <c:if test="${!empty task_form.errors}">
+            <c:if test="${!empty song_form.errors}">
                 <ul class="errors">
-                    <c:forEach items="${task_form.errors}" var="error">
+                    <c:forEach items="${song_form.errors}" var="error">
                         <li>${error}</li>
                     </c:forEach>
                 </ul>

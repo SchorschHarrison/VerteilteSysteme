@@ -52,6 +52,16 @@ public class Playlist implements Serializable{
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
     }
+    
+    
     //</editor-fold>
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
    
 }
