@@ -39,7 +39,7 @@
                 <%-- Eingabefelder --%>
                 <label for="playlist_owner">owner:</label>
                 <div class="side-by-side">
-                    <input type="text" name="playlist_owner" value="${playlist_form.values["playlist_owner"][0]}">
+                    <input type="text" name="playlist_owner" value="${playlist_form.values["playlist_owner"][0]}" readonly="readonly">
                 </div>
                 
                 <label for="playlist_name">name:</label>
