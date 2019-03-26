@@ -9,11 +9,13 @@
  */
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa;
 
+import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 
@@ -32,14 +34,20 @@ public class Playlist implements Serializable{
     
     @NotNull
     private String playlistName;
-
+    
+    //TODO: add owner attribute @ManyToOne @NotNull
+    @NotNull(message="Playlist needs an owner")
+    @ManyToOne
+    User owner;
+   
     
     //<editor-fold desc="Konstruktoren">
     public Playlist() {
     }
 
-    public Playlist(String playlistName) {
+    public Playlist(String playlistName, User owner) {
         this.playlistName = playlistName;
+        this.owner = owner;
     }
     //</editor-fold>
 
@@ -53,15 +61,28 @@ public class Playlist implements Serializable{
         this.playlistName = playlistName;
     }
     
-    
-    //</editor-fold>
-
-    public long getId() {
+        public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
+    
+    
+    
+    //</editor-fold>
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+
+    
+    
    
 }

@@ -13,7 +13,7 @@ package dhbwka.wwi.vertsys.javaee.jtodo.tasks.jpa;
  * Statuswerte einer Aufgabe.
  */
 public enum TaskStatus {
-    OPEN, IN_PROGRESS, FINISHED, CANCELED, POSTPONED;
+    OPEN, IN_PROGRESS, FINISHED, CANCELED, POSTPONED, YOLO, NICE, HOBOS, ANESFA, ASD, YO, DDS; 
 
     /**
      * Bezeichnung ermitteln

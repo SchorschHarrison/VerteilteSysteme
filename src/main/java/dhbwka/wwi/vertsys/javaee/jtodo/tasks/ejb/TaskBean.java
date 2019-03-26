@@ -86,6 +86,8 @@ public class TaskBean extends EntityBean<Task, Long> {
             query.where(p);
         }
         
+       
+        
         return em.createQuery(query).getResultList();
     }
 }

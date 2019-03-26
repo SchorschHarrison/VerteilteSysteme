@@ -46,7 +46,7 @@ public class PlaylistServlet extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO: get playlistid from url
+       
         List<String> errors = new ArrayList<>();
         Playlist playlist = getRequestedPlaylist(req);
         
@@ -61,6 +61,7 @@ public class PlaylistServlet extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/songs/song_list.jsp").forward(req, resp);
             
         }else{
+            //TODO: reroute to new Playlist servlet (Maybe edit Playlistinfoservlet
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
@@ -70,6 +71,7 @@ public class PlaylistServlet extends HttpServlet{
     private Playlist getRequestedPlaylist(HttpServletRequest req){
        
         String playlistId = req.getPathInfo();
+                
         if(playlistId == null){
             playlistId = "";
         }

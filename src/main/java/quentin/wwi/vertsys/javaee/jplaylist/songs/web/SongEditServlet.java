@@ -21,7 +21,6 @@ import quentin.wwi.vertsys.javaee.jplaylist.playlist.ebj.PlaylistBean;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
 import quentin.wwi.vertsys.javaee.jplaylist.songs.ejb.SongBean;
 import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
-import sun.invoke.empty.Empty;
 
 @WebServlet(urlPatterns = "/app/songs/song/*")
 public class SongEditServlet extends HttpServlet{
@@ -80,6 +79,7 @@ public class SongEditServlet extends HttpServlet{
         
         
         Song song = getRequestedSong(req);
+        
         //check if imput is empty
         if(songArtist != null && !songArtist.trim().isEmpty()){
             song.setArtist(songArtist);
@@ -93,6 +93,7 @@ public class SongEditServlet extends HttpServlet{
             errors.add("Bitte gib den Song Titel an, lol");
         }
         
+        //TODO: get actual playlist and remove the set part
         Playlist playlist = playlistBean.findAllSortedByName().get(0);
         song.setPlaylist(playlist);
         
@@ -135,7 +136,7 @@ public class SongEditServlet extends HttpServlet{
         //maybe set plaaylist idk?
         //TODO: check
         //TODO: add playlist
-
+        //TODO: set Playlist to current playlist, it will be overwritten if the song already exists
         
         String songId = req.getPathInfo();
         if(songId == null){

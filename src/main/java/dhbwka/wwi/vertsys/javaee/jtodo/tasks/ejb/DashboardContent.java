@@ -68,7 +68,8 @@ public class DashboardContent implements DashboardContentProvider {
 
         // Anschließend je Kategorie einen weiteren Abschnitt erzeugen
         List<Category> categories = this.categoryBean.findAllSorted();
-
+        
+        
         for (Category category : categories) {
             section = this.createSection(category);
             sections.add(section);
@@ -103,7 +104,7 @@ public class DashboardContent implements DashboardContentProvider {
         DashboardTile tile = this.createTile(category, null, "Alle", cssClass + " status-all", "calendar");
         section.getTiles().add(tile);
 
-        // Ja Aufgabenstatus eine weitere Kachel erzeugen
+        // Je Aufgabenstatus eine weitere Kachel erzeugen
         for (TaskStatus status : TaskStatus.values()) {
             String cssClass1 = cssClass + " status-" + status.toString().toLowerCase();
             String icon = "";
