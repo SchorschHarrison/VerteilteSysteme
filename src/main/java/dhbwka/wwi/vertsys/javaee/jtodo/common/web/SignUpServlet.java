@@ -53,13 +53,19 @@ public class SignUpServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Formulareingaben auslesen        
+        // Formulareingaben auslesen   
+        String vorname = request.getParameter("signup_vorname");
+        String nachname = request.getParameter("signup_nachname");
         String username = request.getParameter("signup_username");
         String password1 = request.getParameter("signup_password1");
         String password2 = request.getParameter("signup_password2");
         
         // Eingaben prüfen
-        User user = new User(username, password1);
+        User user = new User();
+        user.setUsername(username);
+        user.setNachname(nachname);
+        user.setVorname(vorname);
+        user.setPassword(password1);
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
         
@@ -70,7 +76,8 @@ public class SignUpServlet extends HttpServlet {
         // Neuen Benutzer anlegen
         if (errors.isEmpty()) {
             try {
-                this.userBean.signup(username, password1);
+               // this.userBean.signup(username, password1);
+               this.userBean.signup(user);
             } catch (UserBean.UserAlreadyExistsException ex) {
                 errors.add(ex.getMessage());
             }
