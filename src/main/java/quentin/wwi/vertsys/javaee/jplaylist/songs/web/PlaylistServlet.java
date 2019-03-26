@@ -57,6 +57,7 @@ public class PlaylistServlet extends HttpServlet{
         if(errors.isEmpty()){
             List<Song> songs = songBean.getSongsOfPlaylist(playlist);
             req.setAttribute("songs", songs);
+            req.setAttribute("playlist", playlist);
             
             req.getRequestDispatcher("/WEB-INF/songs/song_list.jsp").forward(req, resp);
             

@@ -49,6 +49,7 @@ public class SongEditServlet extends HttpServlet{
             session.setAttribute("song_form" , this.createSongForm(song));
         }
         
+        
         req.getRequestDispatcher("/WEB-INF/songs/song_edit.jsp").forward(req, resp);
         session.removeAttribute("song_form");
     }
@@ -94,8 +95,8 @@ public class SongEditServlet extends HttpServlet{
         }
         
         //TODO: get actual playlist and remove the set part
-        Playlist playlist = playlistBean.findAllSortedByName().get(0);
-        song.setPlaylist(playlist);
+//        Playlist playlist = playlistBean.findAllSortedByName().get(0);
+//        song.setPlaylist(playlist);
         
         
         
@@ -106,16 +107,16 @@ public class SongEditServlet extends HttpServlet{
         }
         
         if(errors.isEmpty()){
-             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/"+playlist.getId()+"/"));
+             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/"+song.getPlaylist().getId()+"/"));
         }else{
-            //TODO: Rerender dialoge
             
             FormValues formValues = new FormValues();
             formValues.setValues(req.getParameterMap());
             formValues.setErrors(errors);
             HttpSession session = req.getSession();
             session.setAttribute("song_form", formValues);
-            resp.sendRedirect(req.getRequestURI());
+            String url = req.getRequestURI() + "?" + req.getQueryString();
+            resp.sendRedirect(url);
         }
         
         
@@ -124,37 +125,36 @@ public class SongEditServlet extends HttpServlet{
     private void deleteSong(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 
         Song song = this.getRequestedSong(req);
+        String playlistid = String.valueOf(song.getPlaylist().getId());
         
         this.songBean.delete(song);
-        resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/"));
+        resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/"+playlistid));
     }
     
     private Song getRequestedSong(HttpServletRequest req){
         Song song = new Song();
         
-        
-        //maybe set plaaylist idk?
         //TODO: check
-        //TODO: add playlist
-        //TODO: set Playlist to current playlist, it will be overwritten if the song already exists
+
         
-        String songId = req.getPathInfo();
+        String songId = req.getParameter("song_id");
+        String playlistId = req.getParameter("playlist_id");
+        
         if(songId == null){
             songId = "";
         }
         
-       
-        /*
-        if (songId.endsWith("/")) {
-            songId = songId.substring(0, songId.length() - 1);
+        if(playlistId == null){
+            playlistId = "";
         }
         
-        if(songId.startsWith("/")){
-            songId = songId.substring(1 , songId.length());
+        try {
+           Playlist playlist = playlistBean.findById(Long.parseLong(playlistId));
+            song.setPlaylist(playlist);
+        } catch (Exception e) {
         }
-*/
-        
-        songId = songId.replace("/", "");
+
+  
         
         try {
             song = this.songBean.findById(Long.parseLong(songId));

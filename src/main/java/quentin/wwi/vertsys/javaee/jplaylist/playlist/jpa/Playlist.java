@@ -35,7 +35,6 @@ public class Playlist implements Serializable{
     @NotNull
     private String playlistName;
     
-    //TODO: add owner attribute @ManyToOne @NotNull
     @NotNull(message="Playlist needs an owner")
     @ManyToOne
     User owner;

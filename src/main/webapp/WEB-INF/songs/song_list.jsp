@@ -26,9 +26,13 @@
         </div>
 
         <div class="menuitem">
-            <!-- TODO: playlistid übergeben -->
-            <a href="<c:url value="/app/songs/song/new/"/>">Add Song</a>
+            <a href="<c:url value="/app/songs/song/new/?playlist_id=${playlist.id}"/>">Add Song</a>
         </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/playlist/edit/${playlist.id}"/>">Edit Playlistinfo</a>
+        </div>
+        
     </jsp:attribute>
 
     <jsp:attribute name="content">
@@ -62,7 +66,8 @@
                     <c:forEach items="${songs}" var="song">
                         <tr>
                             <td>
-                                <a href="<c:url value="/app/songs/song/${song.id}/"/>"> 
+                                <!-- <a href="<c:url value="/app/songs/song/${song.id}/${song.playlist.id}"/>"> -->
+                                <a href="<c:url value="/app/songs/song/?song_id=${song.id}&playlist_id=${song.playlist.id}" />">
                                         <c:out value="${song.title}"/>
                                 </a>
                             </td>
