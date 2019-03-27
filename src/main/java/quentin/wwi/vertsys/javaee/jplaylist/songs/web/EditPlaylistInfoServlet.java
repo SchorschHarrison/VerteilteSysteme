@@ -141,7 +141,7 @@ public class EditPlaylistInfoServlet extends HttpServlet {
 
             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/" + playlist.getId() + "/"));
         } else {
-
+            //reload page, no edit
             FormValues formValues = new FormValues();
             formValues.setValues(req.getParameterMap());
             formValues.setErrors(errors);
@@ -165,6 +165,7 @@ public class EditPlaylistInfoServlet extends HttpServlet {
         if (errors.isEmpty()) {
             resp.sendRedirect(WebUtils.appUrl(req, "/app/dashboard/"));
         } else {
+            //Do not delete! reload page
             FormValues formValues = new FormValues();
             formValues.setValues(req.getParameterMap());
             formValues.setErrors(errors);
@@ -175,6 +176,8 @@ public class EditPlaylistInfoServlet extends HttpServlet {
 
     }
 
+    
+    //checks if the currentuser is the owner of the playlist
     private void checkAuth(List<String> errors, Playlist playlist) {
         User user = userBean.getCurrentUser();
         if (!user.getUsername().equals(playlist.getOwner().getUsername())) {

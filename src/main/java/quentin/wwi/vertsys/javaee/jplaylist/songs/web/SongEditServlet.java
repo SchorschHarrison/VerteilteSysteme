@@ -39,12 +39,15 @@ public class SongEditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        
+        
         HttpSession session = req.getSession();
         Song song = this.getRequestedSong(req);
-
+        
+        //get playlist id (url)
         String playlistId = req.getParameter("playlist_id");
 
+        
         req.setAttribute("edit", song.getId() != 0);
 
         if (session.getAttribute("song_form") == null) {
@@ -54,7 +57,8 @@ public class SongEditServlet extends HttpServlet {
         if (playlistId == null) {
             playlistId = "";
         }
-
+        
+        //call jsp
         req.setAttribute("playlist_id", playlistId);
         req.getRequestDispatcher("/WEB-INF/songs/song_edit.jsp").forward(req, resp);
         session.removeAttribute("song_form");
@@ -86,7 +90,9 @@ public class SongEditServlet extends HttpServlet {
 
         Song song = getRequestedSong(req);
         checkAuth(song, errors);
-        //check if imput is empty
+        
+        
+        //check if input is empty
         if (songArtist != null && !songArtist.trim().isEmpty()) {
             song.setArtist(songArtist);
         } else {
@@ -99,9 +105,7 @@ public class SongEditServlet extends HttpServlet {
             errors.add("Bitte gib den Song Titel an, lol");
         }
 
-        //TODO: get actual playlist and remove the set part
-//        Playlist playlist = playlistBean.findAllSortedByName().get(0);
-//        song.setPlaylist(playlist);
+        
         this.validationBean.validate(song, errors);
 
         if (errors.isEmpty()) {
@@ -111,7 +115,8 @@ public class SongEditServlet extends HttpServlet {
         if (errors.isEmpty()) {
             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/" + song.getPlaylist().getId() + "/"));
         } else {
-
+            //if error
+            //reload Page but keep parameters
             FormValues formValues = new FormValues();
             formValues.setValues(req.getParameterMap());
             formValues.setErrors(errors);
@@ -126,7 +131,7 @@ public class SongEditServlet extends HttpServlet {
     private void deleteSong(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<String> errors = new ArrayList<>();
         
-        
+        //find requested song and check if the user can edit the song
         Song song = this.getRequestedSong(req);
         checkAuth(song, errors);
         String playlistid = String.valueOf(song.getPlaylist().getId());
@@ -138,6 +143,7 @@ public class SongEditServlet extends HttpServlet {
         if(errors.isEmpty()){
             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/" + playlistid));
         }else{
+            //reload page but keep parameter
             FormValues formValues = new FormValues();
             formValues.setValues(req.getParameterMap());
             formValues.setErrors(errors);
@@ -196,6 +202,8 @@ public class SongEditServlet extends HttpServlet {
         return formValues;
     }
 
+    
+    //checks if the current User is Owner of the playlist
     private void checkAuth(Song song, List<String> errors) {
 
         User user = userBean.getCurrentUser();

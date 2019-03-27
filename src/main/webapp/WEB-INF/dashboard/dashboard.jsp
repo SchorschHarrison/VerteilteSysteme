@@ -15,7 +15,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Dashboard test
+        Dashboard
     </jsp:attribute>
 
     <jsp:attribute name="head">

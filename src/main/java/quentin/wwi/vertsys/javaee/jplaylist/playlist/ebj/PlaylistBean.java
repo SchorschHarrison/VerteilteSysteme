@@ -36,6 +36,7 @@ public class PlaylistBean extends EntityBean<Playlist, Long>{
         return em.createQuery("SELECT p FROM Playlist p ORDER BY p.playlistName").getResultList();
     }
     
+    //Returns all Playlist where user 1= @param user
     public List<Playlist> findAllPlaylistsOfOtherUsers(User user){
      return em.createQuery("SELECT p FROM Playlist p WHERE NOT p.owner = :user")
              .setParameter("user", user).getResultList();

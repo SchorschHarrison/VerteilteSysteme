@@ -13,7 +13,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Playlist
+        Playlist: ${playlist.playlistName}
     </jsp:attribute>
 
     <jsp:attribute name="head">
