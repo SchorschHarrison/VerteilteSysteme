@@ -10,6 +10,7 @@
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.ebj;
 
 import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.EntityBean;
+import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -33,6 +34,11 @@ public class PlaylistBean extends EntityBean<Playlist, Long>{
     
     public List<Playlist> findAllSortedByName(){
         return em.createQuery("SELECT p FROM Playlist p ORDER BY p.playlistName").getResultList();
+    }
+    
+    public List<Playlist> findAllPlaylistsOfOtherUsers(User user){
+     return em.createQuery("SELECT p FROM Playlist p WHERE NOT p.owner = :user")
+             .setParameter("user", user).getResultList();
     }
     
 }

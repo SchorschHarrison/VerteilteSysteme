@@ -10,9 +10,11 @@
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa;
 
 import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardContentProvider;
 import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardSection;
 import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardTile;
+import dhbwka.wwi.vertsys.javaee.jtodo.tasks.ejb.DashboardContent;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -42,9 +44,9 @@ public class PlaylistDashboardContent implements DashboardContentProvider{
     public void createDashboardContent(List<DashboardSection> sections) {
         DashboardSection section = new DashboardSection();
         
-        
+        User user = userBean.getCurrentUser();
         //List<Playlist> myPlaylists = playlistBean.findAllSortedByName();
-        List<Playlist> myPlaylists = userBean.getCurrentUser().getPlaylists();
+        List<Playlist> myPlaylists = user.getPlaylists();
         
         for(Playlist playlist: myPlaylists){
             DashboardTile tile = createDashboardTile(playlist);
@@ -55,6 +57,18 @@ public class PlaylistDashboardContent implements DashboardContentProvider{
         
         sections.add(section);
         
+        //Playlists of other Users        
+        section = new DashboardSection();
+        List<Playlist> otherPlaylists = playlistBean.findAllPlaylistsOfOtherUsers(user);
+        
+        for(Playlist playlist: otherPlaylists){
+            DashboardTile tile = createDashboardTile(playlist);
+            section.getTiles().add(tile);
+        }
+        
+        section.setLabel("Playlists of other Users");
+        
+        sections.add(section);
         
     }
     

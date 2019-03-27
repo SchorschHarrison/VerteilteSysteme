@@ -57,10 +57,13 @@ public class Song implements Serializable{
     public Song(String title, String artist){
         this.title = title;
         this.artist = artist;
+        
     }
 //</editor-fold>
     
     //<editor-fold desc="Getter und Setter lol" >
+    
+    
     public Playlist getPlaylist() {
         return playlist;
     }
@@ -86,9 +89,7 @@ public class Song implements Serializable{
     }
     
     
-    
-    //</editor-fold>
-
+     
     public long getId() {
         return id;
     }
@@ -97,6 +98,6 @@ public class Song implements Serializable{
         this.id = id;
     }
     
-    
+    //</editor-fold>
     
 }
