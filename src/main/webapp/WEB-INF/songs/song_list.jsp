@@ -13,7 +13,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-       Playlist
+        Playlist
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -25,14 +25,22 @@
             <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/songs/song/new/?playlist_id=${playlist.id}"/>">Add Song</a>
-        </div>
-        
-        <div class="menuitem">
-            <a href="<c:url value="/app/playlist/edit/${playlist.id}"/>">Edit Playlistinfo</a>
-        </div>
-        
+
+
+        <c:if test="${editable}">
+
+            <div class="menuitem">
+                <a href="<c:url value="/app/songs/song/new/?playlist_id=${playlist.id}"/>">Add Song</a>
+            </div>
+
+            <div class="menuitem">
+                <a href="<c:url value="/app/playlist/edit/?playlist_id=${playlist.id}"/>">Edit Playlistinfo</a>
+            </div>
+        </c:if>
+
+
+
+
     </jsp:attribute>
 
     <jsp:attribute name="content">
@@ -55,25 +63,49 @@
             </c:when>
             <c:otherwise>
                 <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.jtodo.common.web.WebUtils"/>
-                
+
                 <table>
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Artist</th>
+                            <th>Spotify Player</th>
                         </tr>
                     </thead>
                     <c:forEach items="${songs}" var="song">
                         <tr>
-                            <td>
-                                <!-- <a href="<c:url value="/app/songs/song/${song.id}/${song.playlist.id}"/>"> -->
-                                <a href="<c:url value="/app/songs/song/?song_id=${song.id}&playlist_id=${song.playlist.id}" />">
+
+
+
+                            <c:if test="${editable}">
+                                <td>
+                                    <a href="<c:url value="/app/songs/song/?song_id=${song.id}&playlist_id=${song.playlist.id}" />">
                                         <c:out value="${song.title}"/>
-                                </a>
-                            </td>
+                                    </a>
+                                </td>
+                                
+                                
+                            </c:if>
+
+                            <c:if test="${!editable}">
+                                <td>
+                                    <c:out value="${song.title}"/>
+                                </td>
+                            </c:if>
+
+
+
                             <td>
                                 <c:out value="${song.artist}"/>
                             </td>
+
+
+                            <td>
+                                <iframe src="https://open.spotify.com/embed/track/3YNFRvI0WnbvFdxUCQiKjR" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            </td>
+
+
+
                         </tr>
                     </c:forEach>
                 </table>

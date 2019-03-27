@@ -34,8 +34,9 @@
             <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
         </div>
         
+        
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
+            <a href="<c:url value="/app/songs/list/${playlist_id}"/>">Liste</a>
         </div>
     </jsp:attribute>
 
@@ -55,6 +56,7 @@
                 <div class="side-by-side">
                     <input type="text" name="song_artist" value="${song_form.values["song_artist"][0]}">
                 </div>
+                
                 
                 
                 <%-- Button zum Abschicken --%>

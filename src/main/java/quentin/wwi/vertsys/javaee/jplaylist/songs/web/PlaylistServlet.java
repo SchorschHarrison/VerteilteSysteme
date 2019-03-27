@@ -49,13 +49,21 @@ public class PlaylistServlet extends HttpServlet{
        
         List<String> errors = new ArrayList<>();
         Playlist playlist = getRequestedPlaylist(req);
+        String searchText = req.getParameter("search_text");
         
         if(playlist == null){
             errors.add("Playlist not found");
         }
         
+        if(searchText == null){
+            searchText = "";
+        }
+        
         if(errors.isEmpty()){
+            //TODO: add search text to query
             List<Song> songs = songBean.getSongsOfPlaylist(playlist);
+            req.setAttribute("editable", playlist.getOwner().getUsername().equals(userBean.getCurrentUser().getUsername()));
+         
             req.setAttribute("songs", songs);
             req.setAttribute("playlist", playlist);
             
