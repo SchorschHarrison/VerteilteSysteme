@@ -61,7 +61,8 @@ public class PlaylistServlet extends HttpServlet{
         
         if(errors.isEmpty()){
             //TODO: add search text to query
-            List<Song> songs = songBean.getSongsOfPlaylist(playlist);
+            //List<Song> songs = songBean.getSongsOfPlaylist(playlist);
+            List<Song> songs = songBean.findInPlaylist(playlist, searchText);
             req.setAttribute("editable", playlist.getOwner().getUsername().equals(userBean.getCurrentUser().getUsername()));
          
             req.setAttribute("songs", songs);

@@ -38,5 +38,10 @@ public class SongBean extends EntityBean<Song, Long>{
               .getResultList();
     }
     
+    public List<Song> findInPlaylist(Playlist playlist, String search){
+        return em.createQuery("SELECT s FROM Song s WHERE s.playlist = :playlist AND (s.title LIKE :search OR s.artist LIKE :search)")
+                .setParameter("playlist", playlist).setParameter("search", "%"+search+"%").getResultList();
+    }
+    
     
 }
