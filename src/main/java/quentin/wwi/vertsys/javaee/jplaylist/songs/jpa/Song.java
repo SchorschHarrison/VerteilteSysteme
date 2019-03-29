@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
 
 /**
@@ -25,6 +26,7 @@ import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
  */
 
 @Entity
+@XmlRootElement
 public class Song implements Serializable{
     
     @Id

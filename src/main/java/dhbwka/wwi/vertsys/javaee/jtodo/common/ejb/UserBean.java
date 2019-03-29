@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.jtodo.common.ejb;
 
 import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;
@@ -37,7 +38,14 @@ public class UserBean {
     public User getCurrentUser() {
         return this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
     }
-
+    
+    public List<User> findAll(){
+        return this.em.createQuery("SELECT u FROM User u").getResultList();
+    }
+    
+    public User findUser(String id){
+        return em.find(User.class, id);
+    }
     /**
      *
      * @param username

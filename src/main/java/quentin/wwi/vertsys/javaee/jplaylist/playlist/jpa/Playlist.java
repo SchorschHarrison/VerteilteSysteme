@@ -1,23 +1,21 @@
-/*
- * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
- * E-Mail: dhbw@windows3.de
- * Webseite: https://www.wpvs.de/
- * 
- * Dieser Quellcode ist lizenziert unter einer
- * Creative Commons Namensnennung 4.0 International Lizenz.
- */
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa;
 
 import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 
 /**
  *
@@ -25,6 +23,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
+@XmlRootElement
 public class Playlist implements Serializable{
     
     @Id
@@ -38,6 +37,12 @@ public class Playlist implements Serializable{
     @NotNull(message="Playlist needs an owner")
     @ManyToOne
     User owner;
+    
+    
+    
+    
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    List<Song> songs = new ArrayList<>();
    
     
     //<editor-fold desc="Konstruktoren">
@@ -66,6 +71,14 @@ public class Playlist implements Serializable{
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
     
     

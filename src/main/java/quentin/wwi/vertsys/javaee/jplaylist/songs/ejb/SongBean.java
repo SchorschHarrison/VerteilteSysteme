@@ -45,5 +45,11 @@ public class SongBean extends EntityBean<Song, Long>{
                 .getResultList();
     }
     
+    public List<Song> searchAllSongs(String search){
+        return em.createQuery("SELECT s FROM Song s WHERE ( LOWER(s.title) LIKE :search OR LOWER(s.artist) LIKE :search)")
+                .setParameter("search", search.toLowerCase())
+                .getResultList();
+    }
+    
     
 }
