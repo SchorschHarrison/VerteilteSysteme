@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.jtodo.common.ejb;
 
+import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,8 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
+import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 
 /**
  * Kleine EJB, die dafür genutzt werden kann, die Werte einer Entity zu
@@ -61,4 +64,21 @@ public class ValidationBean {
         
         return messages;
     }
+    
+    public boolean checkPlaylistAuth(Playlist playlist, User user, List<String> messages){
+        if(!playlist.getOwner().getUsername().equals(user.getUsername())){
+            messages.add("You can only edit your own playlists");
+            return true;
+        }
+        return false;
+    }    
+    
+    public boolean checkSongAuth(Song song, User user, List<String> messages){
+        if(!song.getPlaylist().getOwner().getUsername().equals(user.getUsername())){
+            messages.add("You can only edit your own songs");
+            return true;
+        }
+        return false;
+    }
+    
 }

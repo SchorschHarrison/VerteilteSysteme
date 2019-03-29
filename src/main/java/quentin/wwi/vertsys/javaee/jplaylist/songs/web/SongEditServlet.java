@@ -89,7 +89,8 @@ public class SongEditServlet extends HttpServlet {
         String songTitle = req.getParameter("song_title");
 
         Song song = getRequestedSong(req);
-        checkAuth(song, errors);
+        validationBean.checkSongAuth(song, userBean.getCurrentUser(), errors);
+        //checkAuth(song, errors);
         
         
         //check if input is empty
@@ -133,7 +134,9 @@ public class SongEditServlet extends HttpServlet {
         
         //find requested song and check if the user can edit the song
         Song song = this.getRequestedSong(req);
-        checkAuth(song, errors);
+        validationBean.checkSongAuth(song, userBean.getCurrentUser(), errors);
+        
+        //checkAuth(song, errors);
         String playlistid = String.valueOf(song.getPlaylist().getId());
 
         if (errors.isEmpty()) {
@@ -204,6 +207,8 @@ public class SongEditServlet extends HttpServlet {
 
     
     //checks if the current User is Owner of the playlist
+    //moved to validation bean
+    /*
     private void checkAuth(Song song, List<String> errors) {
 
         User user = userBean.getCurrentUser();
@@ -212,5 +217,6 @@ public class SongEditServlet extends HttpServlet {
         }
 
     }
+*/
 
 }

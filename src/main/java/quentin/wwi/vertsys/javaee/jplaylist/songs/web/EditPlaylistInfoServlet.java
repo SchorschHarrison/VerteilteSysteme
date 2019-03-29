@@ -122,7 +122,7 @@ public class EditPlaylistInfoServlet extends HttpServlet {
         List<String> errors = new ArrayList<>();
         String playlistName = req.getParameter("playlist_name");
         Playlist playlist = this.getRequestedPlaylist(req);
-        checkAuth(errors, playlist);
+       validationBean.checkPlaylistAuth(playlist, userBean.getCurrentUser(), errors);
 
         if (playlistName != null && !playlistName.trim().isEmpty()) {
             playlist.setPlaylistName(playlistName);
@@ -155,7 +155,7 @@ public class EditPlaylistInfoServlet extends HttpServlet {
     private void deletePlaylist(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<String> errors = new ArrayList<>();
         Playlist playlist = getRequestedPlaylist(req);
-        checkAuth(errors, playlist);
+        validationBean.checkPlaylistAuth(playlist, userBean.getCurrentUser(), errors);
 
         if (errors.isEmpty()) {
             playlistBean.delete(playlist);
@@ -176,13 +176,14 @@ public class EditPlaylistInfoServlet extends HttpServlet {
 
     }
 
-    
     //checks if the currentuser is the owner of the playlist
+    //moved to validation bean
+    /*
     private void checkAuth(List<String> errors, Playlist playlist) {
         User user = userBean.getCurrentUser();
         if (!user.getUsername().equals(playlist.getOwner().getUsername())) {
             errors.add("you can only edit your own Playlists");
         }
     }
-
+     */
 }
