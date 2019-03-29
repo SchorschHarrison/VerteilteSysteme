@@ -29,6 +29,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
 
 /**
@@ -36,6 +38,7 @@ import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
  */
 @Entity
 @Table(name = "JTODO_USER")
+@XmlRootElement
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -117,6 +120,7 @@ public class User implements Serializable {
     public void setNachname(String nach) {
         this.nachname = nach;
     }
+    @XmlTransient
     public List<Task> getTasks() {
         return tasks;
     }
@@ -125,6 +129,7 @@ public class User implements Serializable {
         this.tasks = tasks;
     }
 
+    @XmlTransient
     public List<Playlist> getPlaylists() {
         return playlists;
     }

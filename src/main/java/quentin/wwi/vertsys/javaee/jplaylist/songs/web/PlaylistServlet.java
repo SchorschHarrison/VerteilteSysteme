@@ -81,6 +81,7 @@ public class PlaylistServlet extends HttpServlet{
     private Playlist getRequestedPlaylist(HttpServletRequest req){
        
         String playlistId = req.getPathInfo();
+        
                 
         if(playlistId == null){
             playlistId = "";
