@@ -34,4 +34,8 @@ public class PlaylistFacade {
         }).collect(Collectors.toList());
     }
     
+    public PlaylistDTO findById(Long id){
+        return new PlaylistDTO((playlistBean.findById(id)));
+    }
+    
 }
