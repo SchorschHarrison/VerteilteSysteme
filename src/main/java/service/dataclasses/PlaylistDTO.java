@@ -22,6 +22,7 @@ import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 
 public class PlaylistDTO {
     
+    private Long id;
     private String playlist_name;
     private List<SongDTO> songs;
     private String username;
@@ -35,9 +36,18 @@ public class PlaylistDTO {
         }).collect(Collectors.toList());
         
         this.username = playList.getOwner().getUsername();
-        
+        this.id = playList.getId();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+        
     public String getPlaylist_name() {
         return playlist_name;
     }

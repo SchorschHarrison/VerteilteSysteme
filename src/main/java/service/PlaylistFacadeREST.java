@@ -67,9 +67,16 @@ public class PlaylistFacadeREST extends AbstractFacade<Playlist> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML})
     public Playlist find(@PathParam("id") Long id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public PlaylistDTO findDTO(@PathParam("id") Long id) {
+        return playlistFacade.findById(id);
     }
 
     @GET
