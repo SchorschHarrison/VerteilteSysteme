@@ -36,6 +36,14 @@ public class PlaylistFacade {
     
     public PlaylistDTO findById(Long id){
         return new PlaylistDTO((playlistBean.findById(id)));
+        //return  new PlaylistDTO(playlistBean.getByIdByQueryToTestFuckedUpHTTPResponse(0).get(0));
+    }
+    
+    public List<PlaylistDTO> search(String search){
+        List<Playlist> playlists = playlistBean.search(search);
+        return playlists.stream().map((playlist) -> {
+            return new PlaylistDTO((playlist));
+        }).collect(Collectors.toList());
     }
     
 }

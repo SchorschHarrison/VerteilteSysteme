@@ -71,7 +71,7 @@ public class PlaylistServlet extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/songs/song_list.jsp").forward(req, resp);
             
         }else{
-            //TODO: reroute to new Playlist servlet (Maybe edit Playlistinfoservlet
+            ///IDEA: reroute to new Playlist servlet (Maybe edit Playlistinfoservlet
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
