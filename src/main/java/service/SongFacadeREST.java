@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 import service.dataclasses.SongDTO;
@@ -80,6 +81,15 @@ public class SongFacadeREST extends AbstractFacade<Song> {
         return songFacade.findSong(id);
     }
     
+    
+    //TODO: fix this 
+    @GET
+    @Path("find")
+    @QueryParam("{search}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<SongDTO> searchDTO(@QueryParam("search") String search){
+       return songFacade.searchAllSongs(search);
+    }
 
     @GET
     @Override

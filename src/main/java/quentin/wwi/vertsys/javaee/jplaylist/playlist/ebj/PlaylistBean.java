@@ -42,4 +42,16 @@ public class PlaylistBean extends EntityBean<Playlist, Long>{
              .setParameter("user", user).getResultList();
     }
     
+    
+    public List<Playlist> search(String search){
+        //TODO: case insensitivity
+        return em.createQuery("SELECT p FROM Playlist p WHERE p.playlistName LIKE :search")
+                .setParameter("search", "%"+search+"%")
+                .getResultList();
+    }
+    
+    public List<Playlist> getByIdByQueryToTestFuckedUpHTTPResponse(long id){
+        return em.createQuery("SELECT p FROM Playlist p WHERE p.id = :id").setParameter("id", id).getResultList();
+    }
+    
 }

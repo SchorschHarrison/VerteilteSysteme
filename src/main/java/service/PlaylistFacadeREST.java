@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
 import service.dataclasses.PlaylistDTO;
@@ -111,6 +112,18 @@ public class PlaylistFacadeREST extends AbstractFacade<Playlist> {
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    //fix this fuck
+    @GET
+    @Path("search")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<PlaylistDTO> searchDTO(@QueryParam("search") String search){
+        return playlistFacade.search(search);
+    }
+//    @GET
+//    @PathParam("search")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public PlaylistDTO findPlaylist()
     
     //TODO: hide the pain
     private String hideThePain(){
