@@ -46,6 +46,12 @@ public class UserBean {
     public User findUser(String id){
         return em.find(User.class, id);
     }
+    
+    public List<User> searchUser(String search){
+        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :search OR u.vorname LIKE :search OR u.nachname LIKE :search")
+                .setParameter("search", search + "%").getResultList();
+    }
+    
     /**
      *
      * @param username

@@ -82,7 +82,6 @@ public class SongFacadeREST extends AbstractFacade<Song> {
     }
     
     
-    //TODO: fix this 
     @GET
     @Path("find")
     @QueryParam("{search}")

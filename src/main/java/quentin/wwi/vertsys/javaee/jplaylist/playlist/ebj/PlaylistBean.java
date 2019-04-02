@@ -21,7 +21,6 @@ import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
  * @author D070366
  */
 @Stateless
-@RolesAllowed("app-user")
 public class PlaylistBean extends EntityBean<Playlist, Long>{
 
     public PlaylistBean() {
