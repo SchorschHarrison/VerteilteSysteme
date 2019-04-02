@@ -103,3 +103,9 @@ form .errors {
     margin-top: 1em;
     color: red;
 }
+
+.icon-login{
+    margin-top: 1em;
+    border: 1px solid #bebebe;
+    border-radius: 0.2em;
+}

@@ -55,10 +55,12 @@ public class User implements Serializable {
     private final Password password = new Password();
 
     @Column(name = "VORNAME", length = 64)
+    @Size(min = 5, max = 64, message = "Der Vorname muss zwischen fünf und 64 Zeichen lang sein.")
     @NotNull(message = "Bitte Vorname eintragen")
     private String vorname;
     
     @Column(name = "NACHNAME", length = 64)
+    @Size(min = 5, max = 64, message = "Der Nachname muss zwischen fünf und 64 Zeichen lang sein.")
     @NotNull(message = "Bitte Nachname eintragen")
     private String nachname;
     
