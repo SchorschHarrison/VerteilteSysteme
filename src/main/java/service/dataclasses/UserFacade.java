@@ -40,4 +40,12 @@ public class UserFacade {
         return new UserDTO(userBean.findUser(id));
     }
     
+    public List<UserDTO> searchUser(String search){
+        List<User> users = userBean.searchUser(search);
+        return users.stream().map((user) -> {
+            UserDTO userDTO = new UserDTO(user);
+            return userDTO;
+        }).collect(Collectors.toList());
+    }
+    
 }

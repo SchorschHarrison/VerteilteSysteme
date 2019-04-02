@@ -40,7 +40,7 @@ public class Song implements Serializable{
     @NotNull(message = "Du musst den Song einer Playlist zuordnen")
     private Playlist playlist;
     
-    //TODO: add Genre 
+    ///IDEA: add Genre 
     
     
     
