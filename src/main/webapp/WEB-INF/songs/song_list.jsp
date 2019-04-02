@@ -99,9 +99,9 @@
                                 <c:out value="${song.artist}"/>
                             </td>
 
-
+                            <!-- //IDEA: if not empty -->
                             <td>
-                                <iframe src="https://open.spotify.com/embed/track/3YNFRvI0WnbvFdxUCQiKjR" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                <iframe src="https://open.spotify.com/embed/track/${song.spotifyId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                             </td>
 
 

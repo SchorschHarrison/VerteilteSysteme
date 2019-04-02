@@ -57,6 +57,11 @@
                     <input type="text" name="song_artist" value="${song_form.values["song_artist"][0]}">
                 </div>
                 
+                 <label for="song_spotify_id">Spotify Id:</label>
+                <div class="side-by-side">
+                    <input type="text" name="song_spotify_id" value="${song_form.values["song_spotify_id"][0]}">
+                </div>
+                
                 
                 
                 <%-- Button zum Abschicken --%>
