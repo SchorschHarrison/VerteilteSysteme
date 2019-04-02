@@ -87,6 +87,7 @@ public class SongEditServlet extends HttpServlet {
 
         String songArtist = req.getParameter("song_artist");
         String songTitle = req.getParameter("song_title");
+        String songSpotifyId = req.getParameter("song_spotify_id");
 
         Song song = getRequestedSong(req);
         validationBean.checkSongAuth(song, userBean.getCurrentUser(), errors);
@@ -105,6 +106,8 @@ public class SongEditServlet extends HttpServlet {
         } else {
             errors.add("Bitte gib den Song Titel an, lol");
         }
+        
+        song.setSpotifyId(songSpotifyId);
 
         
         this.validationBean.validate(song, errors);
@@ -197,6 +200,10 @@ public class SongEditServlet extends HttpServlet {
 
         values.put("song_title", new String[]{
             song.getTitle()
+        });
+        
+        values.put("song_spotify_id", new String[]{
+            song.getSpotifyId()
         });
 
         FormValues formValues = new FormValues();

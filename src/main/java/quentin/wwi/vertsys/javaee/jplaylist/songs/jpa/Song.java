@@ -10,6 +10,7 @@
 package quentin.wwi.vertsys.javaee.jplaylist.songs.jpa;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa.Playlist;
 
@@ -49,6 +51,10 @@ public class Song implements Serializable{
     
     @NotNull(message = "Bitte gib den Interpreten an.")
     private String artist;
+    
+    @Column(length = 22)
+    @Size(min = 22, max = 22, message = "ungültige spotify Id")
+    private String spotifyId;
 
     
     //<editor-fold desc="Konstruktoren">
@@ -100,6 +106,16 @@ public class Song implements Serializable{
         this.id = id;
     }
     
+    
+    
     //</editor-fold>
+
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    public void setSpotifyId(String spotifyId) {
+        this.spotifyId = spotifyId;
+    }
     
 }

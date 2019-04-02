@@ -23,6 +23,7 @@ public class SongDTO {
     private String playlistName;
     private String username;
     private Long id;
+    private String spotifyId;
 
     public SongDTO(Song song) {
         this.artist = song.getArtist();
@@ -31,6 +32,7 @@ public class SongDTO {
        // String b = "b";
         this.username = song.getPlaylist().getOwner().getUsername();
         this.id = song.getId();
+        this.spotifyId = song.getSpotifyId();
     }
 
     public String getArtist() {
@@ -72,6 +74,15 @@ public class SongDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    public void setSpotifyId(String spotifyId) {
+        this.spotifyId = spotifyId;
+    }
+    
     
     
     
