@@ -43,9 +43,8 @@ public class PlaylistBean extends EntityBean<Playlist, Long>{
     
     
     public List<Playlist> search(String search){
-        //TODO: case insensitivity
-        return em.createQuery("SELECT p FROM Playlist p WHERE p.playlistName LIKE :search")
-                .setParameter("search", "%"+search+"%")
+        return em.createQuery("SELECT p FROM Playlist p WHERE LOWER(p.playlistName) LIKE :search")
+                .setParameter("search", "%"+search.toLowerCase()+"%")
                 .getResultList();
     }
     
