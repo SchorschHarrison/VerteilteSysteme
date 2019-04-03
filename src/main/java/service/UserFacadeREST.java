@@ -92,6 +92,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("search")
     @Produces({MediaType.APPLICATION_JSON})
     public List<UserDTO> searchUser(@QueryParam("search") String search){
+        if(search == null) search = "";
         return userFacade.searchUser(search);
     }
 
