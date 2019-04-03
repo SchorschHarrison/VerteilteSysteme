@@ -115,9 +115,10 @@ public class PlaylistFacadeREST extends AbstractFacade<Playlist> {
     
     //fix this fuck
     @GET
-    @Path("search/{search}")
+    @Path("search")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<PlaylistDTO> searchDTO(@PathParam("search") String search){
+    public List<PlaylistDTO> searchDTO(@QueryParam("search") String search){
+        if(search == null) search ="";
         return playlistFacade.search(search);
     }
 //    @GET
