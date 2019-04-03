@@ -48,8 +48,8 @@ public class UserBean {
     }
     
     public List<User> searchUser(String search){
-        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :search OR u.vorname LIKE :search OR u.nachname LIKE :search")
-                .setParameter("search", search + "%").getResultList();
+        return em.createQuery("SELECT u FROM User u WHERE LOWER(u.username) LIKE :search OR LOWER(u.vorname) LIKE :search OR LOWER(u.nachname) LIKE :search")
+                .setParameter("search", "%"+search.toLowerCase()+"%").getResultList();
     }
     
     /**
