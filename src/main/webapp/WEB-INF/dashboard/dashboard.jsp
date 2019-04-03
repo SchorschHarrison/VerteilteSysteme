@@ -23,7 +23,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="menu">
-        
+        <div class="menuitem"><a href="<c:url value="/app/editprofile"/>">Profil anzeigen</a></div>
         <!--
         <div class="menuitem">
             <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
