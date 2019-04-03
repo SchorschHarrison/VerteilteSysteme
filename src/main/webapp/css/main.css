@@ -22,10 +22,9 @@ html {
     font-family: 'Quicksand', sans-serif;
     font-size: 14pt;
 
-    background-color: rgb(250, 250, 250);
     color: rgb(83, 91, 94);
-
-    background-image: url(../img/background.png);
+    background: rgb(190, 231, 232);
+    background-image: url(../img/music-transparent-image.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
