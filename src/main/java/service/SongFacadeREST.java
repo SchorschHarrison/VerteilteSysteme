@@ -83,10 +83,10 @@ public class SongFacadeREST extends AbstractFacade<Song> {
     
     
     @GET
-    @Path("find")
-    @QueryParam("{search}")
+    @Path("search")
     @Produces({MediaType.APPLICATION_JSON})
     public List<SongDTO> searchDTO(@QueryParam("search") String search){
+       if(search == null) search = "";
        return songFacade.searchAllSongs(search);
     }
 
