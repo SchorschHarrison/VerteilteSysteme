@@ -9,7 +9,7 @@
  */
 package quentin.wwi.vertsys.javaee.jplaylist.songs.ejb;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.EntityBean;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.EntityBean;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;

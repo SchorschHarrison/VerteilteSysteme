@@ -9,12 +9,11 @@
  */
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.UserBean;
-import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
-import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardContentProvider;
-import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardSection;
-import dhbwka.wwi.vertsys.javaee.jtodo.dashboard.ejb.DashboardTile;
-import dhbwka.wwi.vertsys.javaee.jtodo.tasks.ejb.DashboardContent;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.jplaylist.dashboard.ejb.DashboardContentProvider;
+import dhbwka.wwi.vertsys.javaee.jplaylist.dashboard.ejb.DashboardSection;
+import dhbwka.wwi.vertsys.javaee.jplaylist.dashboard.ejb.DashboardTile;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

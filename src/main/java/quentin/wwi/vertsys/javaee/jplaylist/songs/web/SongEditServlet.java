@@ -1,10 +1,10 @@
 package quentin.wwi.vertsys.javaee.jplaylist.songs.web;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.UserBean;
-import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.ValidationBean;
-import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
-import dhbwka.wwi.vertsys.javaee.jtodo.common.web.FormValues;
-import dhbwka.wwi.vertsys.javaee.jtodo.common.web.WebUtils;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.ValidationBean;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.web.FormValues;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.web.WebUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;

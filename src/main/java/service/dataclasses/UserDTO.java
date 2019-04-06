@@ -9,7 +9,7 @@
  */
 package service.dataclasses;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.jpa.User;
 
 /**
  *
