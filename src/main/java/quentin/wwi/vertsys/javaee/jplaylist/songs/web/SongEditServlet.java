@@ -81,7 +81,8 @@ public class SongEditServlet extends HttpServlet {
 
         }
     }
-
+    
+    //checks userinput and authorization, then saves to database
     private void saveSong(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<String> errors = new ArrayList<String>();
 
@@ -90,15 +91,17 @@ public class SongEditServlet extends HttpServlet {
         String songSpotifyId = req.getParameter("song_spotify_id");
 
         Song song = getRequestedSong(req);
+        //checks if user is the owner of the song
         validationBean.checkSongAuth(song, userBean.getCurrentUser(), errors);
         //checkAuth(song, errors);
         
+        //sets new title and artist
         song.setArtist(songArtist.trim());
         song.setTitle(songTitle.trim());
                 
         song.setSpotifyId(songSpotifyId);
 
-        
+        //check if input is correct (not null & length >= 1
         this.validationBean.validate(song, errors);
 
         if (errors.isEmpty()) {
@@ -106,6 +109,7 @@ public class SongEditServlet extends HttpServlet {
         }
 
         if (errors.isEmpty()) {
+            //success! reroute to the playlists servlet
             resp.sendRedirect(WebUtils.appUrl(req, "/app/songs/list/" + song.getPlaylist().getId() + "/"));
         } else {
             //if error
@@ -149,11 +153,12 @@ public class SongEditServlet extends HttpServlet {
         }
         
     }
-
+    
+    //Finds the requested song if it already exists in database,
+    //otherwhise creates new Song object
     private Song getRequestedSong(HttpServletRequest req) {
         Song song = new Song();
 
-        //TODO: check
         String songId = req.getParameter("song_id");
         String playlistId = req.getParameter("playlist_id");
 
@@ -179,7 +184,9 @@ public class SongEditServlet extends HttpServlet {
 
         return song;
     }
-
+    
+    
+    //creates the Song form for jsp
     public FormValues createSongForm(Song song) {
         Map<String, String[]> values = new HashMap<String, String[]>();
 

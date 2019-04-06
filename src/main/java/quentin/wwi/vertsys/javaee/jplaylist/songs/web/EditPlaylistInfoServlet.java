@@ -34,6 +34,7 @@ import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 /**
  *
  * @author D070366
+ * Servlet for changing playlistinfo/creating a new playlist
  */
 @WebServlet(urlPatterns = "/app/playlist/edit/*")
 public class EditPlaylistInfoServlet extends HttpServlet {

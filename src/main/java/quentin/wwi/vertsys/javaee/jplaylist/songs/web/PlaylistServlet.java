@@ -28,6 +28,7 @@ import quentin.wwi.vertsys.javaee.jplaylist.songs.jpa.Song;
 /**
  *
  * @author D070366
+ * Servlet for the Song list
  */
 
 @WebServlet(urlPatterns="/app/songs/list/*")
@@ -48,11 +49,13 @@ public class PlaylistServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
         List<String> errors = new ArrayList<>();
+        
+        //find playlist
         Playlist playlist = getRequestedPlaylist(req);
         String searchText = req.getParameter("search_text");
         
         if(playlist == null){
-            errors.add("Playlist not found");
+            errors.add("Playlist nicht gefunden");
         }
         
         if(searchText == null){
@@ -60,6 +63,7 @@ public class PlaylistServlet extends HttpServlet{
         }
         
         if(errors.isEmpty()){
+            //reload page and show errors
             //List<Song> songs = songBean.getSongsOfPlaylist(playlist);
             List<Song> songs = songBean.findInPlaylist(playlist, searchText);
             req.setAttribute("editable", playlist.getOwner().getUsername().equals(userBean.getCurrentUser().getUsername()));
@@ -70,6 +74,7 @@ public class PlaylistServlet extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/songs/song_list.jsp").forward(req, resp);
             
         }else{
+            //should not happen if the user only uses links from the website
             ///IDEA: reroute to new Playlist servlet (Maybe edit Playlistinfoservlet
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }

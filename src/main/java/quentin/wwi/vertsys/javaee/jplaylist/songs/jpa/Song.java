@@ -37,7 +37,6 @@ public class Song implements Serializable{
     private long id;
     
     
-    //many to many 
     @ManyToOne
     @NotNull(message = "Du musst den Song einer Playlist zuordnen")
     private Playlist playlist;
