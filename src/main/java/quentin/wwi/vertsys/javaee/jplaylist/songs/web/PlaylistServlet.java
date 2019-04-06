@@ -9,8 +9,7 @@
  */
 package quentin.wwi.vertsys.javaee.jplaylist.songs.web;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.ejb.UserBean;
-import dhbwka.wwi.vertsys.javaee.jtodo.tasks.jpa.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.UserBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

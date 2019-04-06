@@ -9,7 +9,7 @@
  */
 package service;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.jpa.User;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

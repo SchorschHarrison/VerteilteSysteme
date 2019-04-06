@@ -1,6 +1,6 @@
 package quentin.wwi.vertsys.javaee.jplaylist.playlist.jpa;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.jplaylist.common.jpa.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

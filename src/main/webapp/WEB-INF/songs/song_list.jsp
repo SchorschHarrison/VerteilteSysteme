@@ -62,7 +62,7 @@
                 </p>
             </c:when>
             <c:otherwise>
-                <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.jtodo.common.web.WebUtils"/>
+                <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.jplaylist.common.web.WebUtils"/>
 
                 <table>
                     <thead>
