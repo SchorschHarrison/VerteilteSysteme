@@ -93,20 +93,9 @@ public class SongEditServlet extends HttpServlet {
         validationBean.checkSongAuth(song, userBean.getCurrentUser(), errors);
         //checkAuth(song, errors);
         
-        
-        //check if input is empty
-        if (songArtist != null && !songArtist.trim().isEmpty()) {
-            song.setArtist(songArtist);
-        } else {
-            errors.add("Bitte gib einen Artist an");
-        }
-
-        if (songTitle != null && !songTitle.trim().isEmpty()) {
-            song.setTitle(songTitle);
-        } else {
-            errors.add("Bitte gib den Song Titel an, lol");
-        }
-        
+        song.setArtist(songArtist.trim());
+        song.setTitle(songTitle.trim());
+                
         song.setSpotifyId(songSpotifyId);
 
         

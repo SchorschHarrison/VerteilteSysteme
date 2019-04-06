@@ -47,9 +47,11 @@ public class Song implements Serializable{
     
     
     @NotNull(message = "Bitte gib den Titel des Songs ein")
+    @Size(min = 1, message = "Der Songtitel muss mindestens ein Zeichen haben")
     private String title;
     
     @NotNull(message = "Bitte gib den Interpreten an.")
+    @Size(min = 1, message = "Der Künstler muss mindestens ein Zeichen haben")
     private String artist;
     
     @Column(length = 22)
