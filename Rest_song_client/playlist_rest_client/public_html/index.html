@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Alle Songs, Playlists und User</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="myjs.js">
+
+  </script>
+</head>
+
+<body>
+  <div id="myDiv">
+    <h1>Alle Songs, Playlists und User</h1>
+    <label for="">Username: </label>
+    <input type="text" name="" value="" id="in_username">
+    <br>
+    <label for="">Passwort: </label>
+    <input type="text" name="" value="" id="in_password">
+    <br>
+
+    <label for="">Suche nach:</label>
+    <label for="">Songs:</label>
+    <input type="radio" name="group" value="song" checked="checked">
+    <label for="">Playlists:</label>
+    <input type="radio" name="group" value="playlist">
+    <label for="">Usern:</label>
+    <input type="radio" name="group" value="user">
+    <br>
+  </div>
+
+  <input type="text" id="suchfeld" value="I wish you were here">
+  <button onclick="datenAbrufen()">Abrufen</button>
+
+  <div>
+    <div id="ergebnis" class="unsichtbar"></div>
+  </div>
+
+  <script>
+    async function datenAbrufen() {
+      // Zuvor sichtbaren Inhalt verwerfen
+      let suchfeld = document.getElementById("suchfeld");
+      let ergebnisDiv = document.getElementById("ergebnis");
+
+      //liest die radiobox aus, die geklickt ist (entweder "song", "playlist" oder "user")
+      let endpoint = document.querySelector('input[name="group"]:checked').value;
+
+      ergebnisDiv.textContent = "Suche läuft …";
+      ergebnisDiv.classList.remove("unsichtbar");
+
+
+
+
+      // Neue Daten vom Server abrufen
+      let url = "http://localhost:8080/jPlaylist/api/" + endpoint + "/search" +
+        "?search=" + encodeURI(suchfeld.value);
+
+      let user = document.getElementById("in_username").value;
+      let pw = document.getElementById("in_password").value;
+
+      let antwort = await fetch(url, {
+        method: "get",
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Authorization': 'Basic ' + btoa(user + ':' + pw),
+          'Origin': 'http://localhost'
+        })
+      });
+
+      console.log(antwort);
+      ergebnisDiv.innerHTML = "";
+      let results;
+      try {
+          results = await antwort.json();
+      } catch (e) {
+          console.log("Login failed");
+          ergebnisDiv.innerHTML += "Login Failed";
+          return;
+      } finally {
+
+      }
+
+
+
+      // Abgerufene Daten anzeigen
+
+
+      switch (endpoint) {
+        case "song":
+          makeSongDiv(results, ergebnisDiv);
+          break;
+
+        case "playlist":
+          makePlaylistDiv(results, ergebnisDiv);
+          break;
+
+        case "user":
+          makeUserDiv(results, ergebnisDiv);
+          break;
+        default:
+
+      }
+
+    }
+  </script>
+</body>
+
+</html>
