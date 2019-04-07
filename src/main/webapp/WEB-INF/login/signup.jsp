@@ -29,7 +29,7 @@
             <a href="<c:url value="/logout/"/>">Einloggen</a>
         </div>
     </jsp:attribute>
-
+    
     <jsp:attribute name="content">
         <div class="container">
             <form method="post" class="stacked">
