@@ -1,3 +1,7 @@
+// Servlet für die Benutzerverwaltung
+// Frägt den Nutzer ab
+// Füllt die Felder auf dem JSP und speichert im Nachgang den inhalt der Felder über die Methoden der User-Klasse und den UserBean in die Userdatenbank
+// sind die Felder mit ungültigen EIngaben gefüllt wird eine Errorliste angelegt, die dann dem Nutzer inform einer Aufzählung ausgegeben wird
 package dhbwka.wwi.vertsys.javaee.jplaylist.profile.web;
 
 import dhbwka.wwi.vertsys.javaee.jplaylist.common.ejb.UserBean;

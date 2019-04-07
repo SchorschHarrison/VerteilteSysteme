@@ -84,7 +84,7 @@ public class User implements Serializable {
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
     }
-
+    // 
     public User(String username, String vorname, String nachname, String password) {
         this.username = username;
         this.vorname = vorname;

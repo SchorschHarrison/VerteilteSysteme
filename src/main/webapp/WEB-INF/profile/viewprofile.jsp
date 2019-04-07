@@ -39,7 +39,7 @@
             <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
         </div> -->
     </jsp:attribute>
-
+    
     <jsp:attribute name="content">
             <form method="post" class="stacked">
                 <div class="column">
